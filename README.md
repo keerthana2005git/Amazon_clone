@@ -16,6 +16,15 @@ This is a responsive Amazon Clone built using **HTML**, **CSS**, and **JavaScrip
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](Screenshot_home1.png)
+![Home Page](Screenshot_home2.png)
+
+### 🛒 Cart Page
+![Cart Page](Screenshot_cart.png)
+
 
 
 
