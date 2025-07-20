@@ -6,6 +6,8 @@
     <title>Amazon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
 </head>
 <body>
     <header>
@@ -42,10 +44,11 @@
             <p class="nav-2">& Orders</p>
         </div>
         
-        <div class="nav-cart border">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Cart 
-        </div>
+        <a href="cart.html" class="nav-cart border">
+  <i class="fa-solid fa-cart-shopping"></i>
+  Cart
+</a>
+ 
     </div>
 
      <div class="panel">
@@ -76,68 +79,8 @@
     </header>
 
     <div class="hero-section"></div>
-   
-    <div class="shop-sect">
-        <div class="box1 box">
-          <div class="box-content">
-            <h2>Clothes</h2>
-            <div class="box-img"  style="background-image: url('box1_image.jpg.');"></div>
-            <p>See more</p>
-          </div>
-       </div>
-        <div class="box2 box">
-            <div class="box-content">
-                <h2>Health & Personal care</h2>
-                <div class="box-img"  style="background-image: url('box2_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-        </div>
-        <div class="box3 box">
-            <div class="box-content">
-                <h2>Furniture</h2>
-                <div class="box-img"  style="background-image: url('box3_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-        </div>
-        <div class="box4 box">
-            <div class="box-content">
-                <h2>Styles for Women</h2>
-                <div class="box-img"  style="background-image: url('box4_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-        </div>
-        <div class="box5 box">
-            <div class="box-content">
-                <h2>Head Phones</h2>
-                <div class="box-img"  style="background-image: url('box5_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
+    <div class="shop-sect" id="shop-section"></div>
 
-        </div>
-        <div class="box6 box">
-            <div class="box-content">
-                <h2>Home Essential products</h2>
-                <div class="box-img"  style="background-image: url('box6_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-
-        </div>
-        <div class="box7 box">
-            <div class="box-content">
-                <h2>Customer most Loved products</h2>
-                <div class="box-img"  style="background-image: url('box7_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-
-        </div>
-        <div class="box8 box">
-            <div class="box-content">
-                <h2>Upto 60% Off</h2>
-                <div class="box-img"  style="background-image: url('box8_image.jpg.');"></div>
-                <p>See more</p>
-              </div>
-        </div>
-    </div>
     <footer>
      <div class="foot-panel1">
             Back to Top
@@ -182,6 +125,14 @@
             </div>
         </div>
     </footer>
-    
+    <div id="login-modal" style="display:none;" class="modal">
+  <div class="modal-content">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter your name">
+    <input type="password" id="password" placeholder="Enter your password">
+    <button id="login-btn">Login</button>
+  </div>
+</div>
+
 </body>
 </html>

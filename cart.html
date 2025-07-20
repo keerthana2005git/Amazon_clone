@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart - Amazon Clone</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #e2e7e6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .cart-header {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: #0f1111;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    .cart-item-left {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #0f1111;
+    }
+
+    .cart-item .price {
+      font-size: 1rem;
+      color: green;
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #d11a2a;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      padding: 40px 0;
+    }
+
+    .back-to-home {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 16px;
+      background-color: #f0c14b;
+      border: 1px solid #a88734;
+      color: #111;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .subtotal {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f1111;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container">
+    <h1 class="cart-header">Your Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <div class="subtotal" id="cart-subtotal"></div>
+    <a href="index.html" class="back-to-home">← Continue Shopping</a>
+  </div>
+
+  <script>
+    const products = [
+      { title: "Clothes", image: "box1_image.jpg", price: 999 },
+      { title: "Health & Personal care", image: "box2_image.jpg", price: 499 },
+      { title: "Furniture", image: "box3_image.jpg", price: 3999 },
+      { title: "Styles for Women", image: "box4_image.jpg", price: 1499 },
+      { title: "Head Phones", image: "box5_image.jpg", price: 899 },
+      { title: "Home Essentials", image: "box6_image.jpg", price: 799 },
+      { title: "Most Loved Products", image: "box7_image.jpg", price: 699 },
+      { title: "Up to 60% Off", image: "box8_image.jpg", price: 1299 }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const subtotalContainer = document.getElementById("cart-subtotal");
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p class='empty'>Your cart is empty.</p>";
+        subtotalContainer.textContent = "";
+        return;
+      }
+
+      cart.forEach((itemTitle, index) => {
+        const product = products.find(p => p.title === itemTitle);
+        if (!product) return;
+
+        total += product.price;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <div class="cart-item-left">
+            <img src="${product.image}" alt="${product.title}">
+            <div>
+              <h3>${product.title}</h3>
+              <p class="price">₹${product.price}</p>
+            </div>
+          </div>
+          <button class="remove-btn" data-index="${index}">Remove</button>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+
+      subtotalContainer.innerHTML = `Subtotal (${cart.length} items): ₹${total}`;
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("remove-btn")) {
+        const index = e.target.getAttribute("data-index");
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
